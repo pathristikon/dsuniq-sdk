@@ -1,0 +1,21 @@
+{
+  "name": "pathristikon/dsuniq-sdk",
+  "description": "DsUniq SDK",
+  "license": "Private",
+  "authors": [
+    {
+      "name": "Dumitru Alexandru",
+      "email": "office@webdal.ro"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Dsuniq\\DsuniqSdk\\": "src/"
+    }
+  },
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*"
+  }
+}
