@@ -8,7 +8,7 @@
       "email": "office@webdal.ro"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "Dsuniq\\DsuniqSdk\\": "src/"
