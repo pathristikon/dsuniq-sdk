@@ -56,6 +56,8 @@ class Product extends BaseMapping
      */
     private $clientCategory;
 
+    private $characteristics = [];
+
     public function getName(): string
     {
         return $this->name;
@@ -166,6 +168,16 @@ class Product extends BaseMapping
         return $this;
     }
 
+    public function getCharacteristics(): array
+    {
+        return $this->characteristics;
+    }
+
+    public function addCharacteristic(Characteristic $characteristic): void
+    {
+        $this->characteristics[] = $characteristic;
+    }
+
     /**
      * @param string $image
      */
@@ -185,6 +197,13 @@ class Product extends BaseMapping
                 if ($key === 'categories' && array_key_exists('mapped', $obj)) {
                     $this->setCategoryId($obj['mapped']['id']);
                     $this->setCategoryName($obj['mapped']['name']);
+                }
+
+                if ($key === 'characteristics' && array_key_exists('name', $obj) && array_key_exists('content', $obj)) {
+                    $characteristic = new Characteristic();
+                    $characteristic->setName($obj['name']);
+                    $characteristic->setContent($obj['content']);
+                    $this->addCharacteristic($characteristic);
                 }
             }
         }
