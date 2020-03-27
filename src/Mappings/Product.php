@@ -56,7 +56,15 @@ class Product extends BaseMapping
      */
     private $clientCategory;
 
+    /**
+     * @var array
+     */
     private $characteristics = [];
+
+    /**
+     * @var string
+     */
+    private $dataProviderName;
 
     public function getName(): string
     {
@@ -173,6 +181,17 @@ class Product extends BaseMapping
         return $this->characteristics;
     }
 
+    public function getDataProviderName(): string
+    {
+        return $this->dataProviderName;
+    }
+
+    public function setDataProviderName(string $dataProviderName): self
+    {
+        $this->dataProviderName = $dataProviderName;
+        return $this;
+    }
+
     public function addCharacteristic(Characteristic $characteristic): void
     {
         $this->characteristics[] = $characteristic;
@@ -206,6 +225,10 @@ class Product extends BaseMapping
                     $this->addCharacteristic($characteristic);
                 }
             }
+        }
+
+        if ($key === 'dataProvider' && array_key_exists('name', $value)) {
+            $this->setDataProviderName((string)$value['name']);
         }
     }
 }
