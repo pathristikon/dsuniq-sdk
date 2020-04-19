@@ -6,7 +6,7 @@ namespace Dsuniq\DsuniqSdk\Interfaces;
 
 interface ConstantsInterface
 {
-    public const API_URL = 'https://www.dsuniq.com/api/';
-    public const TYPE_PRODUCTS = 'products';
-    public const TYPE_CATEGORIES = 'categories';
+    const API_URL = 'https://www.dsuniq.com/api/';
+    const TYPE_PRODUCTS = 'products';
+    const TYPE_CATEGORIES = 'categories';
 }

@@ -46,7 +46,7 @@ abstract class BaseHandler implements ApiInterface
      * @param int $page
      * @return string|null
      */
-    protected function getRequest(string $type, int $page = 1): ?string
+    protected function getRequest(string $type, int $page = 1)
     {
         $curl = curl_init();
 
@@ -102,7 +102,7 @@ abstract class BaseHandler implements ApiInterface
      * @param array $data
      * @throws HttpResponseException
      */
-    protected function handleHttpExceptions(array $data): void
+    protected function handleHttpExceptions(array $data)
     {
         if (array_key_exists('code', $data) && array_key_exists('message', $data)) {
             throw new HttpResponseException(sprintf('Error code %d, message: %s', $data['code'], $data['message']));

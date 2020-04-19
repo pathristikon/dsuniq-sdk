@@ -71,6 +71,11 @@ class Product extends BaseMapping
      */
     private $dataProviderName;
 
+    /**
+     * @var string
+     */
+    private $sku;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -140,7 +145,7 @@ class Product extends BaseMapping
     /**
      * @return mixed
      */
-    public function getEan(): ?string
+    public function getEan()
     {
         return $this->ean;
     }
@@ -208,7 +213,7 @@ class Product extends BaseMapping
         return $this;
     }
 
-    public function addCharacteristic(Characteristic $characteristic): void
+    public function addCharacteristic(Characteristic $characteristic)
     {
         $this->characteristics[] = $characteristic;
     }
@@ -216,12 +221,17 @@ class Product extends BaseMapping
     /**
      * @param string $image
      */
-    public function addImage(string $image): void
+    public function addImage(string $image)
     {
         $this->images[] = $image;
     }
 
-    protected function customMappings($key, $value): void
+    public function getSku(): string
+    {
+        return $this->sku;
+    }
+
+    protected function customMappings($key, $value)
     {
         if (is_array($value)) {
             foreach ($value as $obj) {
@@ -245,6 +255,10 @@ class Product extends BaseMapping
 
         if ($key === 'dataProvider' && array_key_exists('name', $value)) {
             $this->setDataProviderName((string)$value['name']);
+        }
+
+        if (null !== $this->dataProviderName) {
+            $this->sku = sprintf("%s_%d_dsu", preg_replace('/\s/', '', strtoupper(substr($this->dataProviderName, 1, 3))), $this->id);
         }
     }
 }
